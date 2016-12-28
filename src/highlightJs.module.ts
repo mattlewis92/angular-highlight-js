@@ -12,7 +12,9 @@ export class HighlightJsModule {
     return {
       ngModule: HighlightJsModule,
       providers: [{
-        provide: HIGHLIGHT_JS, useValue: hljs
+        provide: HIGHLIGHT_JS,
+        // workaround a bug with angular where circular objects can't be used as DI tokens
+        useValue: {highlight: (language, source) => hljs.highlight(language, source)}
       }]
     };
   }
