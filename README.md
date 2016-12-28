@@ -15,7 +15,7 @@ https://mattlewis92.github.io/angular-highlight-js/demo/
 - [Installation](#installation)
 - [Documentation](#documentation)
 - [Development](#development)
-- [License](#licence)
+- [License](#license)
 
 ## About
 
