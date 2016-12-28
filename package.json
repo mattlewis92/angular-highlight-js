@@ -1,6 +1,6 @@
 {
   "name": "angular-highlight-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Highlight.js integration for angular 2.0+",
   "main": "./dist/umd/angular-highlight-js.js",
   "module": "./dist/esm/src/index.js",
