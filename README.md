@@ -41,7 +41,8 @@ hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescri
 
 @NgModule({
   imports: [
-    HighlightJsModule.forRoot(hljs)
+     // workaround a bug with angular, in the future you should just need to do `HighlightJsModule.forRoot(hljs)`
+    HighlightJsModule.forRoot({highlight: (language, source) => hljs.highlight(language, source) })
   ]
 })
 export class MyModule {}
