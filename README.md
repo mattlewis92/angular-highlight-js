@@ -47,7 +47,7 @@ hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescri
 export class MyModule {}
 ```
 
-Finally use in in one of your components:
+Finally use in one of your apps components:
 ```typescript
 import { Component } from '@angular/core';
 
