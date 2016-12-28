@@ -28,18 +28,46 @@ Install through npm:
 npm install --save angular-highlight-js
 ```
 
-Then use it in your app like so:
+Then include in your apps module:
 
 ```typescript
-import {Component} from '@angular/core';
-import {HelloWorld} from 'angular-highlight-js';
+import { Component, NgModule } from '@angular/core';
+import * as hljs from 'highlight.js';
+import { HighlightJsModule } from 'angular-highlight-js';
+
+// alternatively if you only need to include a subset of languages
+const hljs: any = require('highlight.js/lib/highlight');
+hljs.registerLanguage('typescript', require('highlight.js/lib/languages/typescript'));
+
+@NgModule({
+  imports: [
+    HighlightJsModule.forRoot(hljs)
+  ]
+})
+export class MyModule {}
+```
+
+Finally use in in one of your components:
+```typescript
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-app',
-  directives: [HelloWorld],
-  template: '<hello-world></hello-world>'
+  template: '<pre><code mwlHighlightJs [source]="source" language="typescript"></code></pre>'
 })
-export class DemoApp {}
+export class MyComponent {
+
+  source: string = `
+import { Component } from '@angular/core';
+
+@Component({
+  template: 'Hello {{ name }}'
+})
+class HelloWorldComponent {
+  name: string = 'World!';
+}
+`.trim();
+
+}
 ```
 
 You may also find it useful to view the [demo source](https://github.com/mattlewis92/angular-highlight-js/blob/master/demo/demo.component.ts).
@@ -51,10 +79,6 @@ You may also find it useful to view the [demo source](https://github.com/mattlew
     // everything is exported angularHighlightJs namespace
 </script>
 ```
-
-## Documentation
-All documentation is auto-generated from the source via typedoc and can be viewed here:
-https://mattlewis92.github.io/angular-highlight-js/docs/
 
 ## Development
 

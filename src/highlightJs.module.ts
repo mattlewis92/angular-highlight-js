@@ -1,12 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HelloWorldComponent } from './helloWorld.component';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { HighlightJsDirective } from './highlightJs.directive';
+import { HIGHLIGHT_JS } from './highlightJs.token';
 
 @NgModule({
-  declarations: [
-    HelloWorldComponent
-  ],
-  imports: [CommonModule],
-  exports: [HelloWorldComponent]
+  declarations: [HighlightJsDirective],
+  exports: [HighlightJsDirective]
 })
-export class HighlightJsModule {}
+export class HighlightJsModule {
+
+  static forRoot(hljs): ModuleWithProviders { //tslint:disable-line
+    return {
+      ngModule: HighlightJsModule,
+      providers: [{
+        provide: HIGHLIGHT_JS, useValue: hljs
+      }]
+    };
+  }
+
+}
