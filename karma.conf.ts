@@ -1,9 +1,8 @@
-'use strict';
+import * as webpack from 'webpack';
 
-const webpack = require('webpack');
 const WATCH = process.argv.indexOf('--watch') > -1;
 
-module.exports = function(config) {
+export default function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -18,10 +17,6 @@ module.exports = function(config) {
       'test/entry.ts'
     ],
 
-    // list of files to exclude
-    exclude: [
-    ],
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
@@ -30,36 +25,39 @@ module.exports = function(config) {
 
     webpack: {
       resolve: {
-        extensions: ['', '.ts', '.js'],
-        alias: {
-          sinon: 'sinon/pkg/sinon'
-        }
+        extensions: ['.ts', '.js']
       },
       module: {
-        preLoaders: [{
-          test: /\.ts$/, loader: 'tslint-loader', exclude: /node_modules/
-        }],
         loaders: [{
-          test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: /node_modules/
+          test: /\.ts$/,
+          loader: 'tslint-loader',
+          exclude: /node_modules/,
+          enforce: 'pre',
+          options: {
+            emitErrors: !WATCH,
+            failOnHint: !WATCH
+          }
         }, {
-          test: /sinon.js$/, loader: 'imports-loader?define=>false,require=>false'
-        }],
-        postLoaders: [{
+          test: /\.ts$/,
+          loader: 'awesome-typescript-loader',
+          exclude: /node_modules/
+        }, {
           test: /src\/.+\.ts$/,
           exclude: /(test|node_modules)/,
-          loader: 'sourcemap-istanbul-instrumenter-loader?force-sourcemap=true'
+          loader: 'sourcemap-istanbul-instrumenter-loader?force-sourcemap=true',
+          enforce: 'post'
         }]
-      },
-      tslint: {
-        emitErrors: !WATCH,
-        failOnHint: false
       },
       plugins: [
         new webpack.SourceMapDevToolPlugin({
           filename: null,
           test: /\.(ts|js)($|\?)/i
-        })
-      ].concat(WATCH ? [] : [new webpack.NoErrorsPlugin()])
+        }),
+        new webpack.ContextReplacementPlugin(
+          /angular(\\|\/)core(\\|\/)@angular/,
+          __dirname + '/src'
+        )
+      ].concat(WATCH ? [] : [new webpack.NoEmitOnErrorsPlugin()])
     },
 
     remapIstanbulReporter: {
@@ -73,12 +71,6 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage', 'karma-remap-istanbul'],
-
-    // web server port
-    port: 9876,
-
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
