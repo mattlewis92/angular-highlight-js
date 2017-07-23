@@ -3,19 +3,27 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { expect } from 'chai';
 import * as hljs from 'highlight.js';
 import { HighlightJsModule } from '../src/highlightJs.module';
+import { HIGHLIGHT_JS } from '../src/highlightJs.token';
+
+@Component({
+  template: '<pre><code mwlHighlightJs [source]="source" language="html"></code></pre>'
+})
+class TestComponent {
+  source: string = '<div class="bar">foo</div>';
+}
+
+function highlightJsFactory(): any {
+  return hljs;
+}
 
 describe('highlightJs directive', () => {
 
-  @Component({
-    template: '<pre><code mwlHighlightJs [source]="source" language="html"></code></pre>'
-  })
-  class TestComponent {
-    source: string = '<div class="bar">foo</div>';
-  }
-
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HighlightJsModule.forRoot(hljs)],
+      imports: [HighlightJsModule.forRoot({
+        provide: HIGHLIGHT_JS,
+        useFactory: highlightJsFactory
+      })],
       declarations: [TestComponent]
     });
   });
