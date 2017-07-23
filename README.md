@@ -19,7 +19,7 @@ https://mattlewis92.github.io/angular-highlight-js/demo/
 
 ## About
 
-Highlight.js integration for angular 2.0+
+Highlight.js integration for angular 4.0+
 
 ## Installation
 
