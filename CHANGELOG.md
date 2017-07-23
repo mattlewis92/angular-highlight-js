@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/mattlewis92/angular-highlight-js/compare/v1.0.2...v2.0.0) (2017-07-23)
+
+
+### Bug Fixes
+
+* **aot:** make the library AoT compatible ([f16f242](https://github.com/mattlewis92/angular-highlight-js/commit/f16f242))
+* use InjectionToken over deprecated OpaqueToken ([4dafcfd](https://github.com/mattlewis92/angular-highlight-js/commit/4dafcfd))
+
+
+### BREAKING CHANGES
+
+* angular 4 or higher is now required to use this library
+* **aot:** you must now pass a `Provider` to the `HighlightJsModule.forRoot` method instead of
+
+the hljs instance directly
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/mattlewis92/angular-highlight-js/compare/v1.0.1...v1.0.2) (2017-03-24)
 
