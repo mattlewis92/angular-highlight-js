@@ -18,7 +18,7 @@ export class HighlightJsDirective implements OnChanges {
   constructor(@Inject(HIGHLIGHT_JS) private hljs) {} //tslint:disable-line
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['source'] || changes['language']) {
+    if ((changes['source'] || changes['language']) && this.language && this.source) {
       this.highlightedCode = this.hljs.highlight(this.language, this.source).value;
     }
   }
