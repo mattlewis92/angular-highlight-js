@@ -1,10 +1,16 @@
 # angular highlight js
+
+[![project unmaintained](https://img.shields.io/badge/project-unmaintained-red.svg)](https://img.shields.io/badge/project-unmaintained-red.svg)
 [![Build Status](https://travis-ci.org/mattlewis92/angular-highlight-js.svg?branch=master)](https://travis-ci.org/mattlewis92/angular-highlight-js)
 [![npm version](https://badge.fury.io/js/angular-highlight-js.svg)](http://badge.fury.io/js/angular-highlight-js)
 [![devDependency Status](https://david-dm.org/mattlewis92/angular-highlight-js/dev-status.svg)](https://david-dm.org/mattlewis92/angular-highlight-js#info=devDependencies)
 [![GitHub issues](https://img.shields.io/github/issues/mattlewis92/angular-highlight-js.svg)](https://github.com/mattlewis92/angular-highlight-js/issues)
 [![GitHub stars](https://img.shields.io/github/stars/mattlewis92/angular-highlight-js.svg)](https://github.com/mattlewis92/angular-highlight-js/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/mattlewis92/angular-highlight-js/master/LICENSE)
+
+## ** Notice **
+
+I no longer use this project, if you would like to take ownership please reach out to me on [twitter](https://twitter.com/mattlewis92_) or via my [website](https://mattlewis.me/#contact). Thanks!
 
 ## Demo
 https://mattlewis92.github.io/angular-highlight-js/demo/
